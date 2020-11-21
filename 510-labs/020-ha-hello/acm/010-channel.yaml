@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: acm-app-channel
+  lables:
+    acm: channel
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  name: ha-demo
+  namespace: acm-app-channel
+spec:
+  pathname: 'https://github.com/dsevost/acm-demo'
+  type: Git

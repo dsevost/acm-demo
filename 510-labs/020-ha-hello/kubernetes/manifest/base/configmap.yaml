@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    acm: acm-simple-app
+    app: hello
+  name: parameters
+data:
+  greeting: "Good Morning!"
+  risky: "false"

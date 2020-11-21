@@ -1,0 +1,10 @@
+#
+# copy this file to route.yaml
+#
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hello
+spec:
+  host: "<changeme>"

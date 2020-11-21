@@ -1,0 +1,13 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    acm: application-meta
+    app: hello
+  name: zone-moscow
+  namespace: acm-ha-hello
+spec:
+  clusterSelector:
+    matchLabels:
+      ha-demo: true
+      zone: moscow
