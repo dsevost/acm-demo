@@ -12,8 +12,7 @@ metadata:
 spec:
   channel: acm-app-channel/federation
   placement:
-    local: true
-#  placement:
-#    placementRef:
-#      kind: PlacementRule
-#      name: dev-clusters
+#    local: true
+    placementRef:
+      kind: PlacementRule
+      name: dev-clusters
