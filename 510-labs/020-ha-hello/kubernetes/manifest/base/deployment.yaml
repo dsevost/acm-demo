@@ -16,13 +16,10 @@ spec:
         app: hello
     spec:
       containers:
-      - image: monopole/hello:1
-        command:
+      - command:
         - "/hello"
         - "--port=8080"
         - "--enableRiskyFeature=$(ENABLE_RISKY)"
-        ports:
-        - containerPort: 8080
         env:
         - name: ALT_GREETING
           valueFrom:
@@ -34,3 +31,7 @@ spec:
             configMapKeyRef:
               name: monopole
               key: risky
+        image: monopole/hello:1
+        name: monopole
+        ports:
+        - containerPort: 8080
