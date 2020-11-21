@@ -6,7 +6,7 @@ metadata:
     app: httpd
     acm: application-meta
   name: dev-clusters
-  namespace: acm-simple-app-meta
+  namespace: acm-simple-app
 spec:
   clusterSelector:
     matchLabels:

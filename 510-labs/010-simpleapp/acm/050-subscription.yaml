@@ -8,7 +8,7 @@ metadata:
     app: httpd
     acm: application-meta
   name: httpd
-  namespace: acm-simple-app-meta
+  namespace: acm-simple-app
 spec:
   channel: acm-app-channel/federation
   placement:
