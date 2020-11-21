@@ -9,5 +9,5 @@ bases:
 patchesStrategicMerge:
 - configmap.yaml
 - deployment.yaml
-- namespaces.yaml
+#- namespaces.yaml
 - route.yaml
