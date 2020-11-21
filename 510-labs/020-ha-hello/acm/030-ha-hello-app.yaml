@@ -1,4 +1,5 @@
-apiVersion: app.k8s.io/v1beta1
+apiVersion: app.k8s.io/v1
+#apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   labels:
