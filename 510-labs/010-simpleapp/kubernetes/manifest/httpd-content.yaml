@@ -4,7 +4,7 @@ metadata:
   labels:
     acm: acm-simple-app
     app: httpd
-  name: htthd-content
+  name: httpd-content
   namespace: acm-simple-app
 data:
   image.svg: |
