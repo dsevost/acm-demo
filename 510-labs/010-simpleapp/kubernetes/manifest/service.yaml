@@ -5,7 +5,6 @@ metadata:
     acm: acm-simple-app
     app: httpd
   name: httpd
-  namespace: acm-simple-app
 spec:
   ports:
   - port: 8080
@@ -13,4 +12,3 @@ spec:
     targetPort: 8080
   selector:
     app: httpd
-  type: ClusterIP

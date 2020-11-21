@@ -5,7 +5,6 @@ metadata:
     acm: acm-simple-app
     app: httpd
   name: httpd-content
-  namespace: acm-simple-app
 data:
   image.svg: |
     <?xml version="1.0" encoding="utf-8"?>
