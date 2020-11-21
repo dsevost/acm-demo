@@ -21,3 +21,12 @@ spec:
         name: httpd
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: httpd-content
+          readOnly: true
+          mountPath: /opt/rh/httpd24/root/var/www/html
+      volumes:
+      - name: httpd-content
+        secret:
+          secretName: httpd-content
+          defaultMode: 420
