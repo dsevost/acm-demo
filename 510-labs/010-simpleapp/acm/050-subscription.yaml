@@ -5,8 +5,8 @@ metadata:
     apps.open-cluster-management.io/git-branch: master
     apps.open-cluster-management.io/git-path: 510-labs/010-simpleapp/kubernetes/manifest
   labels:
-    app: httpd
     acm: application-meta
+    app: httpd
   name: httpd
   namespace: acm-simple-app
 spec:

@@ -4,8 +4,8 @@ metadata:
   name: httpd
   namespace: acm-simple-app
   labels:
-    app: httpd
     acm: application-meta
+    app: httpd
 spec:
   componentKinds:
   - group: apps.open-cluster-management.io

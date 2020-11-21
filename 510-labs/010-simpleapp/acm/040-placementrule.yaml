@@ -3,8 +3,8 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   labels:
-    app: httpd
     acm: application-meta
+    app: httpd
   name: dev-clusters
   namespace: acm-simple-app
 spec:
