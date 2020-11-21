@@ -1,13 +1,13 @@
 ---
-#apiVersion: apps.open-cluster-management.io/v1
-#kind: PlacementRule
-#metadata:
-#  labels:
-#    app: httpd
-#    acm: acm-simple-app
-#  name: dev-clusters
-#  namespace: acm-simple-app
-#spec:
-#  clusterSelector:
-#    matchLabels:
-#      'env': 'dev'
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: httpd
+    acm: acm-simple-app
+  name: dev-clusters
+  namespace: acm-simple-app
+spec:
+  clusterSelector:
+    matchLabels:
+      'environment': 'dev'
