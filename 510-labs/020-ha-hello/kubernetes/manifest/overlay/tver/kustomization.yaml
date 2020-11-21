@@ -1,10 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1
+#apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonAnnotations:
+  note: Mont Tver cluster
 commonLabels:
   org: RHTE
-commonAnnotations:
-  note: Mont Moscow cluster
 bases:
 - ../../base
 patchesStrategicMerge:
 - configmap.yaml
 - deployment.yaml
+- namespaces.yaml
 - route.yaml
