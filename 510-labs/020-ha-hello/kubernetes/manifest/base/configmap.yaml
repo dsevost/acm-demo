@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    acm: acm-simple-app
+    acm: acm-ha-hello
     app: hello
   name: parameters
 data:

@@ -8,6 +8,7 @@ metadata:
     acm: application-meta
     app: hello
   name: app-sub-moscow
+  namespace: acm-ha-hello
 spec:
   channel: acm-app-channel/hello
   placement:

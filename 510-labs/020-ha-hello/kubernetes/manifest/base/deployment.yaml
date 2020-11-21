@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    acm: acm-simple-app
+    acm: acm-ha-hello
     app: hello
   name: hello
 spec:

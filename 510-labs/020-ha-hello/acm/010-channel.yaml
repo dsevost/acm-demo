@@ -9,7 +9,7 @@ metadata:
 apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
-  name: ha-demo
+  name: hello
   namespace: acm-app-channel
 spec:
   pathname: 'https://github.com/dsevost/acm-demo'

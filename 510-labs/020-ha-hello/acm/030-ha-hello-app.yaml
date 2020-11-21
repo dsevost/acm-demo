@@ -5,7 +5,7 @@ metadata:
     acm: application-meta
     app: hello
   name: hello
-  namespace: acm-ha-demo
+  namespace: acm-ha-hello
 spec:
   componentKinds:
   - group: apps.open-cluster-management.io

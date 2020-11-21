@@ -9,5 +9,5 @@ metadata:
 spec:
   clusterSelector:
     matchLabels:
-      ha-demo: true
+      ha-demo: "true"
       zone: tver
