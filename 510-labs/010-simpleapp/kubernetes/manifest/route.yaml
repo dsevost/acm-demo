@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    acm: acm-simple-app
+    app: httpd
+  name: httpd
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: httpd

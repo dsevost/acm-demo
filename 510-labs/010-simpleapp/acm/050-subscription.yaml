@@ -1,0 +1,19 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: master
+    apps.open-cluster-management.io/git-path: application-portability/lab-4-assets
+  labels:
+    app: httpd
+    acm: acm-simple-app
+  name: httpd
+  namespace: acm-simple-app
+spec:
+  channel: acm-app-channel/federation
+  placement:
+    local: true
+#  placement:
+#    placementRef:
+#      kind: PlacementRule
+#      name: dev-clusters

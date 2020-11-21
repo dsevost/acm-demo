@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# The scriptset to finf and remove stucked resources
+# The scrip is about to find and remove stucked resources
 # https://access.redhat.com/solutions/5550931
 #
 
@@ -24,4 +24,5 @@ CMD=$(oc -n $NS get $RR -o custom-columns=':.kind,:.metadata.name' --no-headers 
     sed 's|\W\+|/|' | xargs echo "oc -n $NS patch -p '{\"metadata\":{\"finalizers\":[]}}' --type=merge")
 
 echo "CAREFULLY CHECK and run manually following command: " >&2
+echo >&2
 echo $CMD
