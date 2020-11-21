@@ -6,12 +6,12 @@ metadata:
     apps.open-cluster-management.io/git-path: 510-labs/010-simpleapp/kubernetes/manifest
   labels:
     app: httpd
-    acm: acm-simple-app
+    acm: application-meta
   name: httpd
   namespace: acm-simple-app
 spec:
   channel: acm-app-channel/federation
-  placement:
+#  placement:
 #    local: true
   placement:
     placementRef:
