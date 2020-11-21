@@ -1,1 +1,2 @@
 .kubeconfig*
+*120-managedcluster/**/mgmt
