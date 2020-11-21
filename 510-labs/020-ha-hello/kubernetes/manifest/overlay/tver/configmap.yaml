@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: parameters
 data:
-  greeting: "The app is running on Tver cluster"
+  greeting: "Greeting: The app is running on Tver cluster"

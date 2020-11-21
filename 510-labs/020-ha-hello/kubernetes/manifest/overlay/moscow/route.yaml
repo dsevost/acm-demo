@@ -4,3 +4,6 @@ metadata:
   name: hello
 spec:
   host: ha-hello.apps.ocp4.mont.demo
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
