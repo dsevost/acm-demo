@@ -11,3 +11,6 @@ spec:
   to:
     kind: Service
     name: httpd
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
