@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    acm: acm-ha-reverseword
+    app: reverseword
+  name: reverseword
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reverseword
+  template:
+    metadata:
+      labels:
+        app: reverseword
+    spec:
+      containers:
+      - name: reverseword
+        image: quay.io/mavazque/reversewords:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: RELEASE
+          value: "Latest Release"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 15

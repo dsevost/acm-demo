@@ -1,0 +1,22 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    acm: application-meta
+    app: reverseword
+  name: dr-zone
+  namespace: acm-dr-reverseword
+spec:
+  clusterConditions:
+  - type: "ManagedClusterConditionAvailable"
+    status: "True"
+  clusterSelector:
+    matchExpressions:
+    - key: zone
+      operator: In
+      values:
+      - moscow
+      - tver
+    matchLabels:
+      dr-demo: "true"
+  clusterReplicas: 1
