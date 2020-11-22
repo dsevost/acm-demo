@@ -1,2 +1,4 @@
 *kubeconfig*
 *120-managedcluster/**/mgmt
+*custom-ca*
+*ca-bundle*

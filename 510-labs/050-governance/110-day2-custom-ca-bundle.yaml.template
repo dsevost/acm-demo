@@ -1,0 +1,82 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-config
+  namespace: acm-day2-governance
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: dev-and-prod
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-config-custom-ca-and-proxy
+
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: dev-and-prod
+  namespace: acm-day2-governance
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+    - key: environment
+      operator: In
+      values:
+      - dev
+      - prod
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-config-custom-ca-and-proxy
+  namespace: acm-day2-governance
+  annotations:
+    policy.open-cluster-management.io/standards: NIST 800-53
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline
+spec:
+  disabled: false
+  remediationAction: inform
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-config-proxy
+      spec:
+        namespaceSelector:
+          exclude: ["kube-*"]
+        remediationAction: inform
+        severity: low
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: Proxy
+            metadata:
+              name: cluster
+            spec:
+#              httpProxy: 'http://<username>:<pswd>@<ip>:<port>'
+#              httpsProxy: 'http://<username>:<pswd>@<ip>:<port>'
+#              noProxy: example.com
+#              readinessEndpoints:
+#              - 'https://1.1.1.1'
+#              - 'https://ya.ru'
+              trustedCA:
+                name: user-ca-bundle
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: user-ca-bundle
+              namespace: openshift-config
+            data:
+              ca-bundle.crt: |
