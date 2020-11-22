@@ -3,14 +3,14 @@ kind: Subscription
 metadata:
   annotations:
     apps.open-cluster-management.io/git-branch: master
-    apps.open-cluster-management.io/git-path: 510-labs/030-dr-reverseword/kubernetes/manifest
+    apps.open-cluster-management.io/git-path: 510-labs/030-dr-reverseword/kubernetes/manifest/overlay/dr
   labels:
     acm: application-meta
     app: reverseword
   name: app-sub-dr
-  namespace: acm-dr-rewerseword
+  namespace: acm-dr-reverseword
 spec:
-  channel: acm-app-channel/rewerseword
+  channel: acm-app-channel/reverseword
   placement:
     placementRef:
       kind: PlacementRule
