@@ -8,6 +8,8 @@ metadata:
 spec:
   port:
     targetPort: 8080
+  tls:
+    termination: edge
   to:
     kind: Service
     name: reverseword
