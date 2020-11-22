@@ -1,6 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    acm: acm-ha-hello
-  name: acm-ha-hello
+---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  labels:
+#    acm: acm-ha-hello
+#  name: acm-ha-hello
