@@ -1,0 +1,64 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  labels:
+    acm: policy-deployment-inform
+    governance: policy
+  name: policy-deployment-inform
+  namespace: acm-governance
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-deployment-inform-cluster-monitoring-operator
+      spec:
+        namespaceSelector:
+          exclude: [ "kube-*" ]
+          include: [ "openshift-monitoring" ]
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              name: cluster-monitoring-operator
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-deployment-inform
+  namespace: acm-governance
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-policy-deployment
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-deployment-inform
+
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-deployment
+  namespace: acm-governance
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+    - key: environment
+      operator: In
+      values:
+      - dev
+      - prod

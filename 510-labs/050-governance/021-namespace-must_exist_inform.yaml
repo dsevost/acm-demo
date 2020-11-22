@@ -1,0 +1,69 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  labels:
+    acm: policy-namespace-inform-dev
+    governance: policy
+  name: policy-namespace-inform-dev
+  namespace: acm-governance
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-namespace-inform-dev
+      spec:
+        namespaceSelector:
+          exclude: ["kube-*"]
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              annotations:
+                openshift.io/description: This namespace must exist (policy inform)
+              labels:
+                acm: policy-ns-demo
+              name: acm-ns-dev-inform
+        remediationAction: inform # can be overridden by remediationAction in parent Policy
+        severity: low
+  remediationAction: inform
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  labels:
+    acm: policy-namespace-inform-dev
+    governance: policy
+  name: binding-policy-namespace-inform-dev
+  namespace: acm-governance
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-policy-namespace-inform-dev
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-namespace-inform-dev
+
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-namespace-inform-dev
+  namespace: acm-governance
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+    - key: environment
+      operator: In
+      values:
+      - dev

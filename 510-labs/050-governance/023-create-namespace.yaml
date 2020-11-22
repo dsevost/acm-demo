@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: This namespace must exist (policy inform)
+  name: acm-ns-dev-inform
+  labels:
+    acm: policy-ns-demo

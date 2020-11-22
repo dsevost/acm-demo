@@ -1,0 +1,77 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  labels:
+    acm: policy-pod-enforce
+    governance: policy
+  name: policy-pod-enforce
+  namespace: acm-governance
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-pod-enforce-nginx-pod
+      spec:
+        namespaceSelector:
+          exclude: [ "kube-*" ]
+          include: [ "acm-ns-prod-enforce" ]
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: sample-nginx-pod
+            spec:
+              containers:
+              - command: 
+                - /bin/bash
+                - -c
+                - "$STI_SCRIPTS_PATH/run"
+#                - /usr/bin/sleep
+#                - 1000000
+                image: registry.redhat.io/rhel8/nginx-116:latest
+                name: nginx
+                ports:
+                - containerPort: 8080
+              serviceAccount: default
+              serviceAccountName: default
+        remediationAction: inform
+        severity: low
+  remediationAction: enforce
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-pod-enforce
+  namespace: acm-governance
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-policy-pod-enforce
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-pod-enforce
+
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-pod-enforce
+  namespace: acm-governance
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+    - key: environment
+      operator: In
+      values:
+      - prod
