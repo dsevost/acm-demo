@@ -6,7 +6,7 @@ NS=${ACM_HUB_NS:-"open-cluster-management"}
 
 ACM_OPERATOR_GROUP=${ACM_OPERATOR_GROUP:-"open-cluster-management"}
 
-og_exists=$(oc get operatorgroups --no-headers -o jsonpath='{ .items[*].metadata.name }')
+og_exists=$(oc -n $NS get operatorgroups --no-headers -o jsonpath='{ .items[*].metadata.name }')
 
 [ -z "$og_exists" ] || exit 1
 
