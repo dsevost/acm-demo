@@ -4,7 +4,7 @@ set -e
 
 NS=${ACM_HUB_NS:-"open-cluster-management"}
 
-ACM_CHANNEL=${ACM_CHANNEL:-"release-2.1"}
+ACM_CHANNEL=${ACM_CHANNEL:-"release-2.2"}
 ACM_APPROVAL=${ACM_APPROVAL:-"Automatic"}
 #ACM_APPROVAL=${ACM_APPROVAL:-"Manual"}
 ACM_SUBS_LOCAL_NAME=${ACM_SUBS_LOCAL_NAME:-"acm-demo"}
